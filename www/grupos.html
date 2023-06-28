@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3" />
+    <!-- Your app title -->
+    <title>App futebol</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css" />
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/personalizado.css" />
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css" />
+  </head>
+
+  <body>
+    <!-- App root element -->
+    <div id="app">
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main">
+        <!-- Initial Page, "data-name" contains page name -->
+        <div data-name="link3" class="page">
+          <!-- Top Navbar -->
+          <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner justify-content-center">
+              <div class="title">Grupos</div>
+            </div>
+          </div>
+
+          <!-- Botão flutuante para criar grupo -->
+          <div
+            class="fab fab-extended fab-center-bottom"
+            style="margin-bottom: 100px"
+          >
+            <a href="#" class="popup-open" data-popup=".criar-grupo">
+              <i class="mdi mdi-plus"></i>
+              <div class="fab-text">Criar grupo</div>
+            </a>
+          </div>
+
+          <!-- POP UP PARA CRIAR UM NOVO GRUPO -->
+          <div class="popup criar-grupo">
+            <h2
+              class="block"
+              style="
+                text-align: center;
+                font-size: xx-large;
+                font-weight: 600px;
+              "
+            >
+              Criar Grupo
+            </h2>
+            <div class="list no-hairlines">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Nome do Grupo</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="nome_form_grupo"
+                          type="text"
+                          name="nome"
+                          placeholder="Digite o nome do grupo aqui"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Local</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="local_form_grupo"
+                          type="text"
+                          name="local"
+                          placeholder="Digite o lugar que ocorrerá a pelada"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Cidade</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="cidade_form_grupo"
+                          type="text"
+                          placeholder="Digite uma cidade"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Estado</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="estado_form_grupo"
+                          type="text"
+                          placeholder="Digite um Estado"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Horário</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="horario_form_grupo"
+                          type="text"
+                          placeholder="Digite um horário"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="row block">
+              <a
+                href="#"
+                id="salvar_grupo"
+                class="col button button-fill color-blue popup-close"
+                style="height: 50px"
+                ><img
+                  src="img/icone_botao_salvar.png"
+                  style="height: 30px; width: 30px"
+                />&nbsp; Salvar</a
+              >
+              <a
+                href="#"
+                class="col button button-fill color-red popup-close"
+                style="height: 50px"
+                ><img
+                  src="img/icone_botao_cancelar.png"
+                  style="height: 30px; width: 30px"
+                />Cancelar</a
+              >
+            </div>
+          </div>
+
+          <!-- POP UP COM DETALHES DO GRUPO CLICADO -->
+          <div class="popup popup-sobre">
+            <div class="block">
+              <p>
+                <a class="link popup-close" href="#"
+                  ><i class="mdi mdi-arrow-left"></i> Voltar</a
+                >
+              </p>
+              <h2>Dados do Grupo</h2>
+              <p>ID: <span id="grupo_id">0000000</span></p>
+              <p>Nome: <span id="grupo_nome">Nome</span></p>
+              <p>Local: <span id="grupo_local">local</span></p>
+              <p>Cidade: <span id="grupo_cidade">Cidade</span></p>
+              <p>Estado: <span id="grupo_estado">Estado</span></p>
+              <p>Horário: <span id="grupo_horario">Horário</span></p>
+              <br />
+              <div class="row">
+                <a
+                  href="#"
+                  data-popup=".popup-edit"
+                  class="col button button-fill color-purple popup-open"
+                  ><i class="mdi mdi-pencil"></i> Editar</a
+                >
+                <a
+                  id="deletar_grupo"
+                  href="#"
+                  class="col button button-fill color-red"
+                  ><i class="mdi mdi-delete"></i> Deletar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- POP UP PARA EDITAR O GRUPO SELECIONADO -->
+          <div class="popup popup-edit">
+            <h2 class="block">ID: <span id="id_edit">000000</span></h2>
+            <div class="list no-hairlines">
+              <ul>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Seu Nome</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="nome_edit"
+                          type="text"
+                          name="nome"
+                          placeholder="Digite Seu Nome Aqui"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Seu Local</div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="local_edit"
+                          type="text"
+                          name="local"
+                          placeholder="Digite Seu local Aqui"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">
+                        Cidade
+                      </div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="cidade_edit"
+                          type="text"
+                          placeholder="Digite sua cidade"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">
+                        Estado
+                      </div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="estado_edit"
+                          type="text"
+                          placeholder="Digite seu Estado"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">
+                        Horário
+                      </div>
+                      <div class="item-input-wrap">
+                        <input
+                          id="horario_edit"
+                          type="text"
+                          placeholder="Digite seu horário"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="row block">
+              <a
+                href="#"
+                id="salvar_edit"
+                class="col button button-fill color-purple"
+                ><i class="mdi mdi-content-save"></i>&nbsp; Salvar</a
+              >
+              <a href="#" class="col button button-fill color-gray popup-close"
+                >Cancelar</a
+              >
+            </div>
+          </div>
+
+          <!-- Scrollable page content -->
+          <div class="page-content">
+            <h2 class="text-align-center">Lista dos grupos</h2>
+            <div class="list links-list">
+              <ul id="listaGrupos"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/rotas.js"></script>
+  </body>
+</html>
